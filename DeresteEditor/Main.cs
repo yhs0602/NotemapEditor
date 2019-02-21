@@ -35,9 +35,7 @@ using OpenTK.Input;
 
 
 namespace NotemapEditor
-
 {
-
     class Game : GameWindow
 
     {
@@ -164,10 +162,12 @@ namespace NotemapEditor
             nf.AddTapNote(6, 5);
             nf.Write();
 
-            using (Game game = new Game())
-            {
-                game.Run(30.0);
-            }
+            using (MainForm form = new MainForm())
+                form.ShowDialog();
+            //using (Game game = new Game())
+            //{
+            //    game.Run(30.0);
+           // }
         }
     }
 }
