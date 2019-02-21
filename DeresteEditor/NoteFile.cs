@@ -19,9 +19,9 @@ namespace NotemapEditor
              get;
              set;
          }
-        public NoteFile(String name)
+        public NoteFile(/*String name*/)
         {
-            this.name = name;
+            //this.name = name;
             bits = 8;
             width = 5;
         }
@@ -117,10 +117,10 @@ namespace NotemapEditor
         }
         private List<Block> blocks = new List<Block>();
 
-        public void Write()
+        public void Write(string path)
         {
             using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(@"out.txt"))
+            new System.IO.StreamWriter(path))
             {
                 foreach(Block block in blocks)
                 {

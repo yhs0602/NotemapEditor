@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,9 +29,29 @@ namespace NotemapEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (projectFile.pathToMusic == null || projectFile.pathToMusic.Equals(""))
+            {
+                MessageBox.Show("You should choose a miusic file");
+                return;
+            }
             string artist = textBoxArtist.Text;
+            if (artist == null || artist.Equals(""))
+            {
+                MessageBox.Show("You should enter the artist");
+                return;
+            }
             string name = textBoxSongName.Text;
+            if (name == null || name.Equals(""))
+            {
+                MessageBox.Show("You should enter the song name");
+                return;
+            }
             string creator = textBoxCreator.Text;
+            if (creator == null || creator.Equals(""))
+            {
+                MessageBox.Show("You should enter the creator");
+                return;
+            }
             string difficulty = "easy";
             int lines = 1;
             int level = 20;
@@ -77,7 +100,39 @@ namespace NotemapEditor
             offset = (int)numericUpDownOffset.Value;
             projectFile.title = name;
             projectFile.artist = artist;
+            string projfolder = @"projects\" + name + @"\";
+            Directory.CreateDirectory(projfolder);
+            using (StreamWriter file = new StreamWriter(projfolder+@"info.txt"))
+            {
+                file.WriteLine("#title " + name);
+                file.WriteLine("#artist " + artist);
+                file.WriteLine("#mobile deresimu");
+                file.WriteLine("#easy deleste=2");
+                file.WriteLine("#normal deleste=23");
+                file.WriteLine("#hard deleste="+level);
+                file.WriteLine("#tag " + name);
+            }
+            string destmusic = projfolder + name + Path.GetExtension(projectFile.pathToMusic);
+            if (!File.Exists(destmusic))
+                File.Copy(projectFile.pathToMusic, destmusic);
+            noteFile.Write(projfolder + name + ".notemap2");
+            
+            using (FileStream fs = new FileStream(projfolder+"metadata", FileMode.Create))
+            {
+                // Construct a BinaryFormatter and use it to serialize the data to the stream.
+                BinaryFormatter formatter = new BinaryFormatter();
+                try
+                {
+                    formatter.Serialize(fs, projectFile);
+                }
+                catch (SerializationException f)
+                {
+                    Console.WriteLine("Failed to serialize. Reason: " + f.Message);
+                    throw;
+                }
+            }
 
+            MessageBox.Show("Project file saved");
         }
 
         private void buttonBrowse_Click(object sender, EventArgs e)
@@ -93,6 +148,7 @@ namespace NotemapEditor
         }
 
         ProjectFile projectFile = new ProjectFile();
+        NoteFile noteFile=new NoteFile();
 
         private void MainForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -169,5 +225,58 @@ namespace NotemapEditor
                     return;
             }
         }
+
+        private void buttonEditView_Click(object sender, EventArgs e)
+        {
+            isEditOrView = !isEditOrView;
+            buttonEditView.BackgroundImage = isEditOrView ? Properties.Resources.Edit : Properties.Resources.View;
+        }
+        bool isEditOrView;
+
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            System.Drawing.Graphics graphicsObj;
+
+            graphicsObj = e.Graphics;
+            
+            Pen myPen = new Pen(System.Drawing.Color.White, 5);
+            Brush brush = new SolidBrush(Color.Black);
+            graphicsObj.FillRectangle(brush, this.Bounds);
+            graphicsObj.DrawLine(myPen, 20, 20, 200, 210);
+
+        }
+        /*
+void LoadData()
+{
+   // Declare the hashtable reference.
+   Hashtable addresses = null;
+
+   // Open the file containing the data that you want to deserialize.
+   FileStream fs = new FileStream("DataFile.dat", FileMode.Open);
+   try
+   {
+       BinaryFormatter formatter = new BinaryFormatter();
+
+       // Deserialize the hashtable from the file and  
+       // assign the reference to the local variable.
+       addresses = (Hashtable)formatter.Deserialize(fs);
+   }
+   catch (SerializationException e)
+   {
+       Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+       throw;
+   }
+   finally
+   {
+       fs.Close();
+   }
+
+   // To prove that the table deserialized correctly,  
+   // display the key/value pairs. 
+   foreach (DictionaryEntry de in addresses)
+   {
+       Console.WriteLine("{0} lives at {1}.", de.Key, de.Value);
+   }
+}*/
     }
 }

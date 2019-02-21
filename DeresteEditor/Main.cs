@@ -151,7 +151,7 @@ namespace NotemapEditor
             // RenderFrame events (as fast as the computer can handle).
 
             //Test code
-            NoteFile nf=new NoteFile("hello");
+            NoteFile nf=new NoteFile();
             nf.AddTapNote(1, 1);
             nf.AddTapNote(1, 5);
             nf.AddTapNote(2, 1);
@@ -161,7 +161,7 @@ namespace NotemapEditor
             nf.AddTapNote(6, 1);
             nf.AddTapNote(6, 5);
             nf.AddFlickNote(7, 3, RawNote.LEFTSTART);
-            nf.Write();
+            nf.Write("out.txt");
 
             using (MainForm form = new MainForm())
                 form.ShowDialog();
