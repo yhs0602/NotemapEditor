@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeresteEditor
+namespace NotemapEditor
 {
     class NoteFile
     {
@@ -33,10 +33,10 @@ namespace DeresteEditor
         {
             int blockindex = offset / bits;
             int blockoffset = offset % bits;
-            if(blockindex>blocks.Count)
+            if(blockindex+1>blocks.Count)
             {
                 int toadd = blockindex-blocks.Count+1;
-                for(int i=0;i<toadd;++i)
+                for(int i=0;i<toadd;i++)
                 {
                     AddBlock();
                 }
@@ -53,5 +53,17 @@ namespace DeresteEditor
         }
         private List<Block> blocks = new List<Block>();
 
+        public void Write()
+        {
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"out.txt"))
+            {
+                foreach(Block block in blocks)
+                {
+                    file.Write(block.ToString());
+                }
+            }
+
+        }
     }
 }

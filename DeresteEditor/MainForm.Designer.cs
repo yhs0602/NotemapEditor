@@ -1,4 +1,4 @@
-﻿namespace DeresteEditor
+﻿namespace NotemapEditor
 {
     partial class MainForm
     {

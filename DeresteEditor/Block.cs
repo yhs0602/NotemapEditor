@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeresteEditor
+namespace NotemapEditor
 {
     class Block
     {
@@ -23,7 +23,7 @@ namespace DeresteEditor
         }
         public void SetNote(int roffset, int line, RawNote note)
         {
-            notes[roffset][line] = note;
+            notes[roffset][line-1] = note;
         }
         
         public override String ToString()

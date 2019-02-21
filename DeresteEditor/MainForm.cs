@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DeresteEditor
+namespace NotemapEditor
 {
     public partial class MainForm : Form
     {

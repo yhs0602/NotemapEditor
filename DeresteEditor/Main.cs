@@ -34,7 +34,7 @@ using OpenTK.Input;
 
 
 
-namespace StarterKit
+namespace NotemapEditor
 
 {
 
@@ -147,25 +147,27 @@ namespace StarterKit
         [STAThread]
 
         static void Main()
-
         {
-
             // The 'using' idiom guarantees proper resource cleanup.
-
             // We request 30 UpdateFrame events per second, and unlimited
-
             // RenderFrame events (as fast as the computer can handle).
 
+            //Test code
+            NoteFile nf=new NoteFile("hello");
+            nf.AddTapNote(1, 1);
+            nf.AddTapNote(1, 5);
+            nf.AddTapNote(2, 1);
+            nf.AddTapNote(2, 5);
+            nf.AddTapNote(5, 1);
+            nf.AddTapNote(5, 5);
+            nf.AddTapNote(6, 1);
+            nf.AddTapNote(6, 5);
+            nf.Write();
+
             using (Game game = new Game())
-
             {
-
                 game.Run(30.0);
-
             }
-
         }
-
     }
-
 }
