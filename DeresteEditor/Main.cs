@@ -160,6 +160,7 @@ namespace NotemapEditor
             nf.AddTapNote(5, 5);
             nf.AddTapNote(6, 1);
             nf.AddTapNote(6, 5);
+            nf.AddFlickNote(7, 3, RawNote.LEFTSTART);
             nf.Write();
 
             using (MainForm form = new MainForm())

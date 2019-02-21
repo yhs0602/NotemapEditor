@@ -25,6 +25,11 @@ namespace NotemapEditor
         {
             notes[roffset][line-1] = note;
         }
+
+        public RawNote GetNote(int roffset, int line)
+        {
+            return notes[roffset][line - 1];
+        }
         
         public override String ToString()
         {

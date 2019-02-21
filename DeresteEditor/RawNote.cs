@@ -29,6 +29,11 @@ namespace NotemapEditor
         public const int LEFTENDMID = 2;
         public const int RIGHTSTART = 3;
         public const int RIGHTENDMID = 4;
+        public const int UPSTART = 5;
+        public const int UPENDMID = 6;
+        public const int DOWNSTART = 7;
+        public const int DOWNENDMID = 8;
+
 
         public static readonly RawNote NONOTENOTE = new RawNote(NONOTE, 0, 0, 0, 0);
 
@@ -51,6 +56,16 @@ namespace NotemapEditor
             this.endline = endline;
             this.flick = flick;
             this.nextline = nextline;
+        }
+
+        internal void SetNextLine(int line2)
+        {
+            this.nextline = line2;
+        }
+
+        internal int GetNextLine()
+        {
+            return nextline;
         }
     }
 }

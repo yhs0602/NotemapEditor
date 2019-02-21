@@ -15,7 +15,7 @@ namespace NotemapEditor
         }
         public LongNote(int offset,int endoffset, int line)
         {
-            //aws[0]=new RawNote(RawNote.HOLDNOTE,)
+            //raws[0]=new RawNote(RawNote.HOLDNOTE,)
         }
         private RawNote[] raws = new RawNote[2];
     }

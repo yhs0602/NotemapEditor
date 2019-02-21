@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace NotemapEditor
 {
@@ -84,13 +85,89 @@ namespace NotemapEditor
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Audio Files (*.mp3;*.wav)|*.mp3;*.wav";
             ofd.ShowDialog();
-            if(ofd.FileName.Length>0)
+            if (ofd.FileName.Length > 0)
             {
                 projectFile.pathToMusic = ofd.FileName;
                 textBoxFilePath.Text = ofd.FileName;
             }
         }
 
-        ProjectFile projectFile=new ProjectFile();
+        ProjectFile projectFile = new ProjectFile();
+
+        private void MainForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            //add note
+            int line = 0;
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                    line = 1;
+                    break;
+                case Keys.D2:
+                    line = 2;
+                    break;
+                case Keys.D3:
+                    line = 3;
+                    break;
+                case Keys.D4:
+                    line = 4;
+                    break;
+                case Keys.D5:
+                    line = 5;
+                    break;
+                case Keys.D6:
+                    line = 6;
+                    break;
+                default:
+                    return;
+            }
+            int flick = RawNote.NOFLICK;
+            if (Keyboard.IsKeyDown(Key.Left))
+            {
+                flick = RawNote.LEFTSTART;
+            }
+            else if (Keyboard.IsKeyDown(Key.Right))
+            {
+                flick = RawNote.RIGHTSTART;
+            }
+            else if (Keyboard.IsKeyDown(Key.Up))
+            {
+                flick = RawNote.UPSTART;
+            }
+            else if (Keyboard.IsKeyDown(Key.Down))
+            {
+                flick = RawNote.DOWNSTART;
+            }
+            
+        }
+
+        private void MainForm_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            //finish long note
+            int line = 0;
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                    line = 1;
+                    break;
+                case Keys.D2:
+                    line = 2;
+                    break;
+                case Keys.D3:
+                    line = 3;
+                    break;
+                case Keys.D4:
+                    line = 4;
+                    break;
+                case Keys.D5:
+                    line = 5;
+                    break;
+                case Keys.D6:
+                    line = 6;
+                    break;
+                default:
+                    return;
+            }
+        }
     }
 }
