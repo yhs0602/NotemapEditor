@@ -10,14 +10,18 @@ namespace NotemapEditor
     class ProjectFile
     {
         //for info.txt
-        String title;
-        String artist;
-        String mobile;
-        String tag;
-        String pathToMusic;
-        String ProjDir;
+        public String title;
+        public String artist;
+        public String mobile;
+        public String tag;
+        public String pathToMusic;
+        public String ProjDir;
         private string infoTxtPath;
 
+        public ProjectFile()
+        {
+
+        }
         public ProjectFile(String projectPath,  String title, String artist, String mobile,String tag)
         {
             if(!Directory.Exists(projectPath))

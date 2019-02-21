@@ -81,5 +81,41 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\long_note_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\long_note_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trueslide_main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide_note_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide_note_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide_note_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slide_note_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damage_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
