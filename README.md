@@ -1,2 +1,0 @@
-# NotemapEditor
-Notemap editor
