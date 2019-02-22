@@ -202,7 +202,7 @@
     <value>Ctrl+Z</value>
   </data>
   <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="undoToolStripMenuItem.Text" xml:space="preserve">
     <value>Undo</value>
@@ -211,7 +211,7 @@
     <value>Ctrl+Shift+Z</value>
   </data>
   <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="redoToolStripMenuItem.Text" xml:space="preserve">
     <value>Redo</value>
@@ -1428,11 +1428,20 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>268, 17</value>
   </metadata>
+  <data name="statusStrip1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="statusStrip1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 692</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1251, 22</value>
+    <value>1256, 24</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>

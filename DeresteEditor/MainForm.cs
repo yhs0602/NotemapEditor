@@ -107,16 +107,19 @@ namespace NotemapEditor
                 file.WriteLine("#title " + name);
                 file.WriteLine("#artist " + artist);
                 file.WriteLine("#mobile deresimu");
-                file.WriteLine("#easy deleste=2");
-                file.WriteLine("#normal deleste=23");
-                file.WriteLine("#hard deleste="+level);
+                file.WriteLine("#easy deleste="+projectFile.easyLevel);
+                file.WriteLine("#normal deleste="+projectFile.normalLevel);
+                file.WriteLine("#hard deleste="+projectFile.hardLevel);
+                file.WriteLine("#apex deleste=" + projectFile.apexLevel);
                 file.WriteLine("#tag " + name);
             }
             string destmusic = projfolder + name + Path.GetExtension(projectFile.pathToMusic);
             if (!File.Exists(destmusic))
                 File.Copy(projectFile.pathToMusic, destmusic);
             noteFile.Write(projfolder + name + ".notemap2");
-            
+            projectFile.lines = lines;
+            projectFile.creator = creator;
+            projectFile.initialized = true;
             using (FileStream fs = new FileStream(projfolder+"metadata", FileMode.Create))
             {
                 // Construct a BinaryFormatter and use it to serialize the data to the stream.
@@ -127,11 +130,10 @@ namespace NotemapEditor
                 }
                 catch (SerializationException f)
                 {
-                    Console.WriteLine("Failed to serialize. Reason: " + f.Message);
-                    throw;
+                    MessageBox.Show("Failed to save projcet, reason: " + f.Message);
+                    return;
                 }
-            }
-
+            }   
             MessageBox.Show("Project file saved");
         }
 
@@ -235,48 +237,110 @@ namespace NotemapEditor
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            System.Drawing.Graphics graphicsObj;
-
-            graphicsObj = e.Graphics;
-            
-            Pen myPen = new Pen(System.Drawing.Color.White, 5);
+            Graphics graphicsObj= e.Graphics;
+            int STARTX = 0;
+            int ENDX = pictureBox.Size.Width;
+            int STARTY = 0;
+            int ENDY = pictureBox.Size.Height;
+            Pen gridPen = new Pen(Color.White, 1);
+            Pen redPen = new Pen(Color.Red,2);
             Brush brush = new SolidBrush(Color.Black);
-            graphicsObj.FillRectangle(brush, this.Bounds);
-            graphicsObj.DrawLine(myPen, 20, 20, 200, 210);
+            graphicsObj.FillRectangle(brush, pictureBox.Bounds);
+            //draw origin
+            graphicsObj.DrawLine(redPen, STARTX,ENDY - 10, ENDX, ENDY - 10);
+            if (projectFile.initialized)
+                return;
+            int lines = projectFile.lines;
+            int deltaX = ENDX / (lines + 1);
+            //Draw grid
+            for(int x=deltaX;x<ENDX;x+=deltaX)
+            {
+                graphicsObj.DrawLine(gridPen, deltaX, 0, deltaX, ENDY);
+            }
+            //Draw panels
+            //-0-0-0-0-0-0-
+           
+            //Draw notes
+
+            //if playing refresh with timer (update grid and note Y
 
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            pictureBox.Refresh();
+        }
+
+        private void radioButtonEasy_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonEasy.Checked)
+            {
+                projectFile.CurrentDifficulty = "easy";
+            }
+        }
+
+        private void radioButtonHard_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonHard.Checked)
+            {
+                projectFile.CurrentDifficulty = "hard";
+            }
+        }
+
+        private void radioButtonNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonNormal.Checked)
+            {
+                projectFile.CurrentDifficulty = "normal";
+            }
+        }
+
+        private void radioButtonApex_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButtonApex.Checked)
+            {
+                projectFile.CurrentDifficulty = "apex";
+            }
+        }
+
+        private void numericUpDownLevel_ValueChanged(object sender, EventArgs e)
+        {
+            projectFile.Level = (int) numericUpDownLevel.Value;
+        }
+
+
         /*
 void LoadData()
 {
-   // Declare the hashtable reference.
-   Hashtable addresses = null;
+// Declare the hashtable reference.
+Hashtable addresses = null;
 
-   // Open the file containing the data that you want to deserialize.
-   FileStream fs = new FileStream("DataFile.dat", FileMode.Open);
-   try
-   {
-       BinaryFormatter formatter = new BinaryFormatter();
+// Open the file containing the data that you want to deserialize.
+FileStream fs = new FileStream("DataFile.dat", FileMode.Open);
+try
+{
+BinaryFormatter formatter = new BinaryFormatter();
 
-       // Deserialize the hashtable from the file and  
-       // assign the reference to the local variable.
-       addresses = (Hashtable)formatter.Deserialize(fs);
-   }
-   catch (SerializationException e)
-   {
-       Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-       throw;
-   }
-   finally
-   {
-       fs.Close();
-   }
+// Deserialize the hashtable from the file and  
+// assign the reference to the local variable.
+addresses = (Hashtable)formatter.Deserialize(fs);
+}
+catch (SerializationException e)
+{
+Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+throw;
+}
+finally
+{
+fs.Close();
+}
 
-   // To prove that the table deserialized correctly,  
-   // display the key/value pairs. 
-   foreach (DictionaryEntry de in addresses)
-   {
-       Console.WriteLine("{0} lives at {1}.", de.Key, de.Value);
-   }
+// To prove that the table deserialized correctly,  
+// display the key/value pairs. 
+foreach (DictionaryEntry de in addresses)
+{
+Console.WriteLine("{0} lives at {1}.", de.Key, de.Value);
+}
 }*/
     }
 }

@@ -218,6 +218,7 @@
             this.radioButtonApex.Name = "radioButtonApex";
             this.radioButtonApex.TabStop = true;
             this.radioButtonApex.UseVisualStyleBackColor = true;
+            this.radioButtonApex.CheckedChanged += new System.EventHandler(this.radioButtonApex_CheckedChanged);
             // 
             // radioButtonHard
             // 
@@ -225,6 +226,7 @@
             this.radioButtonHard.Name = "radioButtonHard";
             this.radioButtonHard.TabStop = true;
             this.radioButtonHard.UseVisualStyleBackColor = true;
+            this.radioButtonHard.CheckedChanged += new System.EventHandler(this.radioButtonHard_CheckedChanged);
             // 
             // radioButtonNormal
             // 
@@ -232,6 +234,7 @@
             this.radioButtonNormal.Name = "radioButtonNormal";
             this.radioButtonNormal.TabStop = true;
             this.radioButtonNormal.UseVisualStyleBackColor = true;
+            this.radioButtonNormal.CheckedChanged += new System.EventHandler(this.radioButtonNormal_CheckedChanged);
             // 
             // radioButtonEasy
             // 
@@ -239,6 +242,7 @@
             this.radioButtonEasy.Name = "radioButtonEasy";
             this.radioButtonEasy.TabStop = true;
             this.radioButtonEasy.UseVisualStyleBackColor = true;
+            this.radioButtonEasy.CheckedChanged += new System.EventHandler(this.radioButtonEasy_CheckedChanged);
             // 
             // numericUpDownLevel
             // 
@@ -249,6 +253,7 @@
             0,
             0,
             0});
+            this.numericUpDownLevel.ValueChanged += new System.EventHandler(this.numericUpDownLevel_ValueChanged);
             // 
             // label5
             // 
@@ -436,8 +441,8 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Name = "statusStrip1";
             // 
             // buttonRemoveBlock
@@ -488,6 +493,7 @@
             this.Name = "MainForm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxDifficulty.ResumeLayout(false);
